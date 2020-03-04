@@ -1,1 +1,1 @@
-Are we out of date?
+We are now on a branch and signing commits
