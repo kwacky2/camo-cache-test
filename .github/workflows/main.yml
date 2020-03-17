@@ -11,7 +11,7 @@ jobs:
         run: |
           curl --request PUT \
           --url https://api.github.com/repos/${{ github.repository }}/interaction-limits \
-          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'authorization: Bearer ${{ secrets.USER_TOKEN }}' \
           --header 'accept: application/vnd.github.sombra-preview' \
           --data '{
           "limit": "existing_users",
