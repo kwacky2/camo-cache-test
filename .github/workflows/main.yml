@@ -14,6 +14,6 @@ jobs:
         owner: ${{ github.owner }}
         repository: ${{ github.repository }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - run: echo Setting interaction limits
