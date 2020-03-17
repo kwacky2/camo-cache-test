@@ -2,7 +2,7 @@ name: Limit Repo Interactions
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 0 * * *'
 jobs:
   limitInteractions:
     runs-on: ubuntu-latest
