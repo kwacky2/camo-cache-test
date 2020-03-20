@@ -1,4 +1,0 @@
-shiny
-delicious
-non-conflicting
-moar features
