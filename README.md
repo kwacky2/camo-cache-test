@@ -1,1 +1,1 @@
-This is all wrong!
+OMG! We now have status checks.
