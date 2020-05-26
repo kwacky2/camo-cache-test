@@ -1,1 +1,1 @@
-OMG! We now have status checks.
+This is out of date
