@@ -1,1 +1,1 @@
-This file has no content
+This file is tagged
