@@ -1,4 +1,4 @@
-name: Milestone Management
+name: Create Weekly Milestone
 
 on:
   schedule:
@@ -25,3 +25,5 @@ jobs:
           "title": "${{steps.get_title.outputs.title}}",
           "due_on": "${{steps.get_due_on.outputs.date}}"
           }'
+
+  
