@@ -20,7 +20,7 @@ jobs:
           curl --request PUT \
           --url https://api.github.com/repos/${{ github.repository }}/milestones \
           --header 'authorization: Bearer ${{ secrets.USER_TOKEN }}' \
-          --header 'accept: application/vnd.github.sombra-preview' \
+          --header 'accept: application/vnd.github.v3+json' \
           --data '{
           "title": steps.get_title.outputs.title,
           "due_on": steps.get_due_on.outputs.date
