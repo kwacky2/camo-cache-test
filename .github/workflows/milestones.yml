@@ -1,0 +1,25 @@
+name: Milestone Management
+
+on:
+  schedule:
+    - cron: '0 22 * * 0'
+    workflow_dispatch:
+
+jobs:
+  create-weekly-milestone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get dates
+        id: get_dates
+        run: echo ::set-output name=title::$(date "+%Y-W%V") 
+        run: echo ::set-output name=date::$(date "+%Y-%m-%dT07:00:00Z") 
+      - name: Create Milestone
+        run: |
+          curl --request PUT \
+          --url https://api.github.com/repos/${{ github.repository }}/milestones \
+          --header 'authorization: Bearer ${{ secrets.USER_TOKEN }}' \
+          --header 'accept: application/vnd.github.sombra-preview' \
+          --data '{
+          "title": steps.get_dates.outputs.title,
+          "due_on": steps.get_dates.outputs.date
+          }'
