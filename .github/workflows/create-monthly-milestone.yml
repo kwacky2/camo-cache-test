@@ -1,0 +1,29 @@
+name: Create  Monthly Milestone
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+jobs:
+  create-monthly-milestone:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get title
+        id: get_title
+        run: echo ::set-output name=title::$(date "+%B") 
+      - name: get due date
+        id: get_due_on
+        run: echo ::set-output name=date::$(date -d "$(date +%Y-%m-01) +1 month -1 day" --iso-8601="seconds") 
+      - name: Create Milestone
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/milestones \
+          --header 'authorization: Bearer ${{ secrets.USER_TOKEN }}' \
+          --header 'accept: application/vnd.github.v3+json' \
+          --data '{
+          "title": "${{steps.get_title.outputs.title}}",
+          "due_on": "${{steps.get_due_on.outputs.date}}"
+          }'
+
+  
