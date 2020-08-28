@@ -22,6 +22,6 @@ jobs:
           --header 'authorization: Bearer ${{ secrets.USER_TOKEN }}' \
           --header 'accept: application/vnd.github.v3+json' \
           --data '{
-          "title": steps.get_title.outputs.title,
-          "due_on": steps.get_due_on.outputs.date
+          "title": ${{steps.get_title.outputs.title}},
+          "due_on": ${{steps.get_due_on.outputs.date}}
           }'
