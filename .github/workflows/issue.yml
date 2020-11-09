@@ -8,5 +8,8 @@ jobs:
   assign:
     runs-on: ubuntu-latest
     steps:
-    - name: get issue
-      run: echo The issue is ${{$GITHUB.context.payload.issue}}
+      - uses: actions/checkout@v2
+      - uses: actions/github-script@v2
+        with:
+          script: |
+            console.log(script({github, context}))
