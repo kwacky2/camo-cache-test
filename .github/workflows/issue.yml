@@ -1,0 +1,12 @@
+name: Assign Milestone
+
+on:
+  issues:
+    types: [opened]
+    
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+    - name: get issue
+      run: echo The issue is ${{$GITHUB.context.payload.issue}}
