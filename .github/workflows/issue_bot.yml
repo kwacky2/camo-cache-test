@@ -1,26 +1,24 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Issue Bot Test
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the dev branch
+name: Weekly Tracker
 on:
   workflow_dispatch:
-
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  
 jobs:
-  # This workflow contains a single job called "build"
-  create_issue:
-    # The type of runner that the job will run on
+  daily_standup:
+    name: Weekly Tracker
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Scheduled Issue
-        uses: imjohnbo/issue-bot@v2.4.2
-        with:
-          title: Scheduled Issue Test
-          labels: enhancement
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    # Repo code checkout required if `template` is used
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: get date
+      id: get_date
+      run: echo ::set-output name=date::$(TZ='Australia/Brisbane' date "+%V, %Y")      
+    - name: issue-bot
+      uses: imjohnbo/issue-bot@v2.4.2
+      with:
+        close-previous: true
+        template: ".github/ISSUE_TEMPLATE/this-week.md" # assignees, labels will be overridden if present in YAML header
+        title: "Week ${{ steps.get_date.outputs.date }}" 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
