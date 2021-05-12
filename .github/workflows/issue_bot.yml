@@ -10,7 +10,7 @@ jobs:
     
     # Repo code checkout required if `template` is used
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.3.4
     - name: get date
       id: get_date
       run: echo ::set-output name=date::$(TZ='Australia/Brisbane' date "+%V, %Y")      
